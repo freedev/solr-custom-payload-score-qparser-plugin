@@ -18,7 +18,7 @@ Example document:
 Example field definition
 
 ```
-  <fieldType name="payloads" stored="true" indexed="true" class="solr.TextField">
+  <fieldType name="payloads" stored="true" indexed="true" class="solr.TextField" positionIncrementGap="1000">
     <analyzer type="index">
       <tokenizer class="solr.WhitespaceTokenizerFactory"/>
       <filter class="solr.DelimitedPayloadTokenFilterFactory" encoder="float"/>
