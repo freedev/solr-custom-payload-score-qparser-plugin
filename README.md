@@ -8,23 +8,38 @@ Example document:
 {
     "id":"1",
     "multiPayload": [
-      "A:1 B:2 C:3 D:4",
-      "A:0.1 B:0.2 E:5 F:6",
-      "E:0.5 F:0.6"
+      "A|1 B|2 C|3 D|4",
+      "A|0.1 B|0.2 E|5 F|6",
+      "E|0.5 F|0.6"
     ]
 }
 ```
 
-Try using `{!custom_payload_score f=multipayload v=$pl func=sum includeSpanScore=false operator=phrase slop=100 inOrder=false}`
-
-Try using `http://localhost:8983/solr/test/select?debugQuery=true&q={!payload_score f=multipayload v=$pl func=sum includeSpanScore=false operator=phrase}&pl=__MY_CLAUSES__`:
-
-Then change `__MY_CLAUSES__` with `A B`
+Example field definition
 
 ```
+  <fieldType name="payloads" stored="true" indexed="true" class="solr.TextField">
+    <analyzer type="index">
+      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+      <filter class="solr.DelimitedPayloadTokenFilterFactory" encoder="float"/>
+    </analyzer>
+    <analyzer type="query">
+      <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+    </analyzer>
+  </fieldType>
 
+<field name="multiPayload" type="payloads" indexed="true" stored="true" multiValued="true" />
 ```
 
+Try using
+```
+{!custom_payload_score f=multipayload v=$pl func=sum includeSpanScore=false operator=phrase slop=100 inOrder=false}`
+```
+
+For example:
+```
+http://localhost:8983/solr/test/select?debugQuery=true&q={!payload_score f=multiPayload v=$pl func=sum includeSpanScore=false operator=phrase slop=100 inOrder=false}&pl=A B
+```
 
 ## Requirements
 - Solr 7.x
@@ -44,6 +59,9 @@ Building requires JDK 8 and Maven.  Once you're setup just run:
 - add these lines in your `solrconfig.xml`:
 
 ```
+  <queryParser name="custom_payload_score" class="it.damore.solr.payload.CustomPayloadScoreQParserPlugin">
+  </queryParser>
+
 <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-custom-payload-score-qparser-plugin-\d.*\.jar" />
 <lib dir="${solr.solr.home}/lib/" regex="solr-custom-payload-score-qparser-plugin-\d.*\.jar" />
 ```
