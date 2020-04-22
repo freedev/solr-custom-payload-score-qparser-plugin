@@ -1,6 +1,6 @@
 # Solr Custom Payload Score QParser Plugin
 
-This custom Query Parser is based on the standard `payload_score` but add two parameters `slop` and `inOrder`, this let you handle queries with terms in any order and that matches only few terms.
+This custom Query Parser, based on the standard `payload_score`, let you add two new parameters to the former: `slop` and `inOrder`, this let you handle queries with terms in any order and that matches only few terms.
 
 Example document:
 
