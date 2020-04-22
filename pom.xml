@@ -1,0 +1,66 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>it.damore.solr.payload</groupId>
+  <artifactId>solr-custom-payload-score-qparser-plugin</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0</version>
+  <name>solr-custom-payload-score-qparser-plugin</name>
+  <url>http://maven.apache.org</url>
+  <properties>
+      <solr-version>8.5.0</solr-version>
+     <jdk-version>1.8</jdk-version>
+     <maven-compiler-plugin-version>3.8.1</maven-compiler-plugin-version>
+     <junit-jupiter-api-version>5.5.2</junit-jupiter-api-version>
+  </properties>
+
+  <build>
+    <plugins>
+     <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>${jdk-version}</source>
+          <target>${jdk-version}</target>
+        </configuration>
+        <groupId>org.apache.maven.plugins</groupId>
+        <version>${maven-compiler-plugin-version}</version>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+        <groupId>org.apache.solr</groupId>
+        <artifactId>solr-core</artifactId>
+        <version>${solr-version}</version>
+    </dependency>
+      <dependency>
+          <groupId>org.apache.solr</groupId>
+          <artifactId>solr-test-framework</artifactId>
+          <version>${solr-version}</version>
+          <scope>test</scope>
+          <exclusions>
+              <exclusion>
+                  <groupId>org.restlet.jee</groupId>
+                  <artifactId>org.restlet</artifactId>
+              </exclusion>
+              <exclusion>
+                  <groupId>org.restlet.jee</groupId>
+                  <artifactId>org.restlet.ext.servlet</artifactId>
+              </exclusion>
+          </exclusions>
+      </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>${junit-jupiter-api-version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>${junit-jupiter-api-version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>
