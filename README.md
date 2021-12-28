@@ -42,7 +42,7 @@ http://localhost:8983/solr/test/select?debugQuery=true&q={!payload_score f=multi
 ```
 
 ## Requirements
-- Solr 8.x
+- Solr 11.x
 - A field type that utilizes payloads string
 
 ## Building
