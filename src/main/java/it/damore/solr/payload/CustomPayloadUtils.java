@@ -23,26 +23,12 @@ import java.util.List;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
-import org.apache.lucene.analysis.payloads.DelimitedPayloadTokenFilterFactory;
-import org.apache.lucene.analysis.payloads.NumericPayloadTokenFilterFactory;
-import org.apache.lucene.analysis.payloads.PayloadHelper;
 import org.apache.lucene.analysis.tokenattributes.TermToBytesRefAttribute;
-import org.apache.lucene.analysis.util.TokenFilterFactory;
 import org.apache.lucene.index.Term;
-import org.apache.lucene.queries.payloads.AveragePayloadFunction;
-import org.apache.lucene.queries.payloads.MaxPayloadFunction;
-import org.apache.lucene.queries.payloads.MinPayloadFunction;
-import org.apache.lucene.queries.payloads.PayloadDecoder;
-import org.apache.lucene.queries.payloads.PayloadFunction;
-import org.apache.lucene.queries.payloads.SumPayloadFunction;
-import org.apache.lucene.search.spans.SpanNearQuery;
-import org.apache.lucene.search.spans.SpanOrQuery;
-import org.apache.lucene.search.spans.SpanQuery;
-import org.apache.lucene.search.spans.SpanTermQuery;
-import org.apache.lucene.util.BytesRef;
-import org.apache.solr.analysis.TokenizerChain;
-import org.apache.solr.schema.FieldType;
-import org.apache.solr.search.PayloadScoreQParserPlugin;
+import org.apache.lucene.queries.spans.SpanNearQuery;
+import org.apache.lucene.queries.spans.SpanOrQuery;
+import org.apache.lucene.queries.spans.SpanQuery;
+import org.apache.lucene.queries.spans.SpanTermQuery;
 
 public class CustomPayloadUtils {
   /**
